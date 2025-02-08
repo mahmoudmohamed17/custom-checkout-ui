@@ -4,25 +4,26 @@ import 'package:flutter/material.dart';
 
 class PaymentMethodsList extends StatefulWidget {
   const PaymentMethodsList({super.key});
-  static const List<String> list = [
-    Assets.imagesCard,
-    Assets.imagesPaypal,
-    Assets.imagesApplePay,
-  ];
 
   @override
   State<PaymentMethodsList> createState() => _PaymentMethodsListState();
 }
 
 class _PaymentMethodsListState extends State<PaymentMethodsList> {
+  final List<String> list = [
+    Assets.imagesCard,
+    Assets.imagesPaypal,
+    Assets.imagesApplePay,
+  ];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      height: 62,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: PaymentMethodsList.list.length,
+        itemCount: list.length,
+        physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return GestureDetector(
               onTap: () {
@@ -33,8 +34,7 @@ class _PaymentMethodsListState extends State<PaymentMethodsList> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: PaymentMethod(
-                    isActive: _currentIndex == index,
-                    image: PaymentMethodsList.list[index]),
+                    isActive: _currentIndex == index, image: list[index]),
               ));
         },
       ),

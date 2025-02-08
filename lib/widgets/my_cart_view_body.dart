@@ -59,7 +59,7 @@ class MyCartViewBody extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 16,
+            height: 24,
           ),
         ],
       ),
