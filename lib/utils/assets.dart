@@ -2,24 +2,24 @@
 class Assets {
   Assets._();
   
-  /// Assets for applePay
-  /// assets/apple-pay.png
-  static const String applePay = "assets/apple-pay.png";
+  /// Assets for imagesApplePay
+  /// assets/images/apple-pay.svg
+  static const String imagesApplePay = "assets/images/apple-pay.svg";
 
-  /// Assets for arrowBack
-  /// assets/arrow-back.svg
-  static const String arrowBack = "assets/arrow-back.svg";
+  /// Assets for imagesArrowBack
+  /// assets/images/arrow-back.svg
+  static const String imagesArrowBack = "assets/images/arrow-back.svg";
 
-  /// Assets for basket
-  /// assets/basket.png
-  static const String basket = "assets/basket.png";
+  /// Assets for imagesBasket
+  /// assets/images/basket.png
+  static const String imagesBasket = "assets/images/basket.png";
 
-  /// Assets for card
-  /// assets/card.svg
-  static const String card = "assets/card.svg";
+  /// Assets for imagesCard
+  /// assets/images/card.svg
+  static const String imagesCard = "assets/images/card.svg";
 
-  /// Assets for paypal
-  /// assets/paypal.svg
-  static const String paypal = "assets/paypal.svg";
+  /// Assets for imagesPaypal
+  /// assets/images/paypal.svg
+  static const String imagesPaypal = "assets/images/paypal.svg";
 }
 

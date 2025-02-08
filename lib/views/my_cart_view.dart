@@ -1,3 +1,5 @@
+import 'package:custom_checkout_ui/widgets/app_bar.dart';
+import 'package:custom_checkout_ui/widgets/my_cart_view_body.dart';
 import 'package:flutter/material.dart';
 
 class MyCartView extends StatelessWidget {
@@ -6,7 +8,8 @@ class MyCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: appBar(title: 'My Cart'),
+      body: MyCartViewBody(),
     );
   }
 }
