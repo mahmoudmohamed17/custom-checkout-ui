@@ -9,11 +9,11 @@ class ThankYouView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appBar(
-          title: '',
-          onTap: () {
-            Navigator.pop(context);
-          }),
+      // appBar: appBar(
+      //     title: '',
+      //     onTap: () {
+      //       Navigator.pop(context);
+      //     }),
       body: ThankYouViewBody(),
     );
   }

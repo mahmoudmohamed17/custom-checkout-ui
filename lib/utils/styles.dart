@@ -6,6 +6,11 @@ abstract class Styles {
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
+  static const TextStyle regular16 = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 
   static const TextStyle semiBold18 = TextStyle(
     fontFamily: 'Inter',
