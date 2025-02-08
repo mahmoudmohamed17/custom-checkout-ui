@@ -1,5 +1,6 @@
 import 'package:custom_checkout_ui/utils/assets.dart';
 import 'package:custom_checkout_ui/utils/styles.dart';
+import 'package:custom_checkout_ui/views/payment_details_view.dart';
 import 'package:custom_checkout_ui/widgets/custom_button.dart';
 import 'package:custom_checkout_ui/widgets/order_item.dart';
 import 'package:flutter/material.dart';
@@ -46,15 +47,16 @@ class MyCartViewBody extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                  label: 'Complete Payment',
-                  onPressed: () {},
-                ),
-              ),
-            ],
+          SizedBox(
+            width: double.infinity,
+            child: CustomButton(
+              label: 'Complete Payment',
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PaymentDetailsView();
+                }));
+              },
+            ),
           ),
           SizedBox(
             height: 16,

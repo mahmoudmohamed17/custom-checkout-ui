@@ -2,10 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-AppBar appBar({required String title}) {
+AppBar appBar({required String title, VoidCallback? onTap}) {
     return AppBar(
-      leading: Center(
-        child: Icon(FontAwesomeIcons.arrowLeftLong),
+      leading: GestureDetector(
+        onTap: onTap,
+        child: Center(
+          child: Icon(FontAwesomeIcons.arrowLeftLong),
+        ),
       ),
       title: Text(
         title,
