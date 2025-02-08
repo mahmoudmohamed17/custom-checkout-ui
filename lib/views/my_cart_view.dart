@@ -8,6 +8,7 @@ class MyCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: appBar(title: 'My Cart'),
       body: MyCartViewBody(),
     );

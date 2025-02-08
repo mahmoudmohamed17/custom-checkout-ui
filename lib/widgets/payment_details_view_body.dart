@@ -1,3 +1,4 @@
+import 'package:custom_checkout_ui/views/thank_you_view.dart';
 import 'package:custom_checkout_ui/widgets/custom_button.dart';
 import 'package:custom_checkout_ui/widgets/custom_credit_card.dart';
 import 'package:custom_checkout_ui/widgets/payment_methods_list.dart';
@@ -40,6 +41,10 @@ class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
                 child: CustomButton(
                   label: 'Pay',
                   onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ThankYouView();
+                    }));
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                     } else {
