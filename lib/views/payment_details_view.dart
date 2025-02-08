@@ -8,6 +8,7 @@ class PaymentDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: appBar(
           title: 'Payment Details',
           onTap: () {
