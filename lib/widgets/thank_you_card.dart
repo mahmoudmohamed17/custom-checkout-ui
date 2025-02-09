@@ -1,3 +1,4 @@
+import 'package:custom_checkout_ui/extensions/context_extension.dart';
 import 'package:custom_checkout_ui/utils/styles.dart';
 import 'package:custom_checkout_ui/widgets/barcode_widget.dart';
 import 'package:custom_checkout_ui/widgets/card_ticket_badge.dart';
@@ -36,15 +37,15 @@ class ThankYouCard extends StatelessWidget {
               style: Styles.regular20,
             ),
             SizedBox(
-              height: 42,
+              height: 32,
             ),
             PaymentItemInfo(title: 'Date', value: '01/24/2023'),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             PaymentItemInfo(title: 'Time', value: '10:15 AM'),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             PaymentItemInfo(title: 'To', value: 'Sam Louis'),
             Divider(
@@ -52,17 +53,19 @@ class ThankYouCard extends StatelessWidget {
             ),
             TotalPriceWidget(),
             SizedBox(
-              height: 30,
+              height: 16,
             ),
             CardTicketBadge(),
-            SizedBox(
-              height: 30,
-            ),
             Spacer(),
             BarcodeWidget(),
+            // to always make the BarcodeWidget at the center of the remaining space of the ticket
+            // context.height * 0.2 ==> the height of the remaining space [bottom of the ticket]
+            // +20 ==> which is the radius of the two white circles
+            // /2 ==> to make it at the center [bottom of the widget is the one only at the center]
+            // -30 ==> 1/2 height of the widget
             SizedBox(
-              height: 60,
-            ),
+              height: (context.height * 0.2 + 20) / 2 - 30,
+            )
           ],
         ),
       ),

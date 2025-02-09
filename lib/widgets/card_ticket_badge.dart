@@ -17,7 +17,7 @@ class CardTicketBadge extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(8),
       child: Row(
         spacing: 24,
         children: [

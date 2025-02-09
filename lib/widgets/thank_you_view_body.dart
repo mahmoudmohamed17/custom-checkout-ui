@@ -10,7 +10,7 @@ class ThankYouViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -36,9 +36,9 @@ class ThankYouViewBody extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            top: -45,
+            top: -40,
             child: CustomCheckIcon(),
-          )
+          ),
         ],
       ),
     );
