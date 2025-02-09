@@ -1,8 +1,8 @@
 import 'package:custom_checkout_ui/utils/assets.dart';
 import 'package:custom_checkout_ui/utils/styles.dart';
-import 'package:custom_checkout_ui/views/payment_details_view.dart';
 import 'package:custom_checkout_ui/widgets/custom_button.dart';
 import 'package:custom_checkout_ui/widgets/order_item.dart';
+import 'package:custom_checkout_ui/widgets/payment_methods_list.dart';
 import 'package:flutter/material.dart';
 
 class MyCartViewBody extends StatelessWidget {
@@ -52,14 +52,39 @@ class MyCartViewBody extends StatelessWidget {
             child: CustomButton(
               label: 'Complete Payment',
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return PaymentDetailsView();
-                }));
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return PaymentMethodsBottomSheet();
+                    });
               },
             ),
           ),
           SizedBox(
             height: 24,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PaymentMethodsBottomSheet extends StatelessWidget {
+  const PaymentMethodsBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 32,
+        children: [
+          PaymentMethodsList(),
+          CustomButton(
+            label: 'Continue',
+            onPressed: () {},
           ),
         ],
       ),
