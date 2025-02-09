@@ -13,7 +13,10 @@ class BarcodeWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset(Assets.imagesBarCode, height: 60,),
+        SvgPicture.asset(
+          Assets.imagesBarCode,
+          height: 60,
+        ),
         Container(
           height: 60,
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),

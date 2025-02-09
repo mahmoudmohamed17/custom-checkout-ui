@@ -1,4 +1,3 @@
-
 import 'package:custom_checkout_ui/widgets/custom_button.dart';
 import 'package:custom_checkout_ui/widgets/payment_methods_list.dart';
 import 'package:flutter/material.dart';
