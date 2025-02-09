@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final Dio _dio = Dio();
+  final _dio = Dio();
   Future<Response> post(
       {required body,
       required String url,
