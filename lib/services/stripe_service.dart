@@ -27,4 +27,17 @@ class StripeService {
       merchantDisplayName: 'Mahmoud Mohamed',
     ));
   }
+
+  // step 3
+  Future<void> displayPaymentSheet() async {
+    await Stripe.instance.presentPaymentSheet();
+  }
+
+  // trigger this to excute the three main steps
+  Future<void> makePayment({required PaymentIntentInputModel model}) async {
+    var paymentIntentModel = await createPaymentIntent(model);
+    await initPaymentSheet(
+        paymentIntentClientSecret: paymentIntentModel.clientSecret!);
+    await displayPaymentSheet();
+  }
 }
