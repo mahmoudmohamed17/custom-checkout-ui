@@ -1,4 +1,6 @@
 import 'package:custom_checkout_ui/managers/payment_cubit/payment_cubit.dart';
+import 'package:custom_checkout_ui/models/payment_intent_input_model.dart';
+import 'package:custom_checkout_ui/utils/build_snack_bar.dart';
 import 'package:custom_checkout_ui/views/thank_you_view.dart';
 import 'package:custom_checkout_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +20,18 @@ class CustomButtonBlocConsumer extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => ThankYouView()));
         }
         if (state is PaymentFailed) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message)));
+          snackBar(context, 'An error occuered, please try again later.');
         }
       },
       builder: (context, state) {
         return CustomButton(
           label: 'Continue',
           isLoading: state is PaymentLoading ? true : false,
-          onPressed: () {},
+          onPressed: () {
+            var model =
+                PaymentIntentInputModel(amount: '1000', currency: 'USD');
+            context.read<PaymentCubit>().makePayment(model: model);
+          },
         );
       },
     );
