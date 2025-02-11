@@ -1,3 +1,5 @@
+import 'package:custom_checkout_ui/models/customer_input_model.dart';
+import 'package:custom_checkout_ui/models/customer_model/customer_model.dart';
 import 'package:custom_checkout_ui/models/payment_intent_input_model.dart';
 import 'package:custom_checkout_ui/models/payment_intent_model/payment_intent_model.dart';
 import 'package:custom_checkout_ui/services/api_service.dart';
@@ -7,13 +9,14 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeService {
   final _apiService = ApiService();
-  final url = 'https://api.stripe.com/v1/payment_intents';
+  final paymentIntentUrl = 'https://api.stripe.com/v1/payment_intents';
+  final customerCreationUrl = 'https://api.stripe.com/v1/customers';
 
   // step 1
   Future<PaymentIntentModel> createPaymentIntent(
       PaymentIntentInputModel model) async {
     var response = await _apiService.post(
-        url: url,
+        url: paymentIntentUrl,
         body: model.toJson(),
         token: ApiKeys.secretKey,
         contentType: Headers.formUrlEncodedContentType);
@@ -43,5 +46,16 @@ class StripeService {
     await initPaymentSheet(
         paymentIntentClientSecret: paymentIntentModel.clientSecret!);
     await displayPaymentSheet();
+  }
+
+  Future<CustomerModel> createCusomer(CustomerInputModel model) async {
+    var response = await _apiService.post(
+        url: customerCreationUrl,
+        body: model.toJson(),
+        token: ApiKeys.secretKey,
+        contentType: Headers.formUrlEncodedContentType);
+    var customerModel =
+        CustomerModel.fromJson(response.data); // parsing the data from response
+    return customerModel;
   }
 }
