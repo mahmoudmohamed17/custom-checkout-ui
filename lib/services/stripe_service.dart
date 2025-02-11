@@ -1,5 +1,6 @@
 import 'package:custom_checkout_ui/models/customer_input_model.dart';
 import 'package:custom_checkout_ui/models/customer_model/customer_model.dart';
+import 'package:custom_checkout_ui/models/ephemeral_key_model/ephemeral_key_model.dart';
 import 'package:custom_checkout_ui/models/payment_intent_input_model.dart';
 import 'package:custom_checkout_ui/models/payment_intent_model/payment_intent_model.dart';
 import 'package:custom_checkout_ui/services/api_service.dart';
@@ -11,6 +12,7 @@ class StripeService {
   final _apiService = ApiService();
   final paymentIntentUrl = 'https://api.stripe.com/v1/payment_intents';
   final customerCreationUrl = 'https://api.stripe.com/v1/customers';
+  final ephemeralKeyCreationUrl = 'https://api.stripe.com/v1/ephemeral_keys';
 
   // step 1
   Future<PaymentIntentModel> createPaymentIntent(
@@ -57,5 +59,24 @@ class StripeService {
     var customerModel =
         CustomerModel.fromJson(response.data); // parsing the data from response
     return customerModel;
+  }
+
+  // called each time a user want to make a payment process
+  Future<EphemeralKeyModel> createEphemeralKey(
+      {required String customerId}) async {
+    var response = await _apiService.post(
+        url: ephemeralKeyCreationUrl,
+        body: {
+          'customer': customerId,
+        },
+        headers: {
+          'Authorization': 'Bearer ${ApiKeys.secretKey}',
+          'Stripe-Version': '2025-01-27.acacia',
+        },
+        token: ApiKeys.secretKey,
+        contentType: Headers.formUrlEncodedContentType);
+    var ephemeralKeyModel = EphemeralKeyModel.fromJson(
+        response.data); // parsing the data from response
+    return ephemeralKeyModel;
   }
 }

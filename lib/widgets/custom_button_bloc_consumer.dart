@@ -28,8 +28,12 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           label: 'Continue',
           isLoading: state is PaymentLoading ? true : false,
           onPressed: () {
-            var model =
-                PaymentIntentInputModel(amount: '1000', currency: 'USD');
+            var model = PaymentIntentInputModel(
+                amount: '1000',
+                currency: 'USD',
+                customerId: 'cus_RkitKIAWBSCUIo');
+            // we use a static customer id as we just making a single feature
+            // but in a real app we have to fetch a customer id using the stripe api
             context.read<PaymentCubit>().makePayment(model: model);
           },
         );
