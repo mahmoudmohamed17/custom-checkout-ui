@@ -1,4 +1,9 @@
+import 'dart:developer';
+
+import 'package:custom_checkout_ui/funcs/get_transaction_data.dart';
 import 'package:custom_checkout_ui/managers/payment_cubit/payment_cubit.dart';
+import 'package:custom_checkout_ui/models/transaction_model/transaction_model.dart';
+import 'package:custom_checkout_ui/utils/api_keys.dart';
 import 'package:custom_checkout_ui/utils/snack_bar.dart';
 import 'package:custom_checkout_ui/views/thank_you_view.dart';
 import 'package:custom_checkout_ui/widgets/custom_button.dart';
@@ -28,6 +33,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           label: 'Continue',
           isLoading: state is PaymentLoading ? true : false,
           onPressed: () {
+            // Test for Stripe
             // var model = PaymentIntentInputModel(
             //     amount: '1000',
             //     currency: 'USD',
@@ -36,46 +42,31 @@ class CustomButtonBlocConsumer extends StatelessWidget {
             // // but in a real app we have to fetch a customer id using the stripe api
             // context.read<PaymentCubit>().makePayment(model: model);
 
+            var transactionData = getTransactionData();
+            var transactionModel = TransactionModel(
+                amount: transactionData.amount,
+                description: transactionData.description,
+                itemList: transactionData.itemList);
+
             Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PaypalCheckoutView(
                 sandboxMode: true,
-                clientId: "YOUR CLIENT ID",
-                secretKey: "YOUR SECRET KEY",
-                transactions: const [
+                clientId: ApiKeys.clientPaypalId,
+                secretKey: ApiKeys.secretPaypalKey,
+                transactions: [
                   {
-                    "amount": {
-                      "total": "100",
-                      "currency": "USD",
-                      "details": {
-                        "subtotal": "100",
-                        "shipping": "0",
-                        "shipping_discount": 0
-                      }
-                    },
-                    "description": "The payment transaction description.",
-                    "item_list": {
-                      "items": [
-                        {
-                          "name": "Apple",
-                          "quantity": 4,
-                          "price": "10",
-                          "currency": "USD"
-                        },
-                        {
-                          "name": "Pineapple",
-                          "quantity": 5,
-                          "price": "12",
-                          "currency": "USD"
-                        }
-                      ]
-                    }
+                    "amount": transactionModel.amount,
+                    "description": transactionModel.description,
+                    "item_list": transactionModel.itemList,
                   }
                 ],
                 note: "Contact us for any questions on your order.",
                 onSuccess: (Map params) async {
+                  log('Success: ${params.toString()}');
                   Navigator.pop(context);
                 },
                 onError: (error) {
+                  log('Error: ${error.toString()}');
                   Navigator.pop(context);
                 },
                 onCancel: () {
